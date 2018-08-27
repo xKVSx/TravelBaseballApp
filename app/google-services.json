@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "771731259565",
+    "firebase_url": "https://travel-baseball.firebaseio.com",
+    "project_id": "travel-baseball",
+    "storage_bucket": "travel-baseball.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771731259565:android:00f9fc6f33889e95",
+        "android_client_info": {
+          "package_name": "android.csulb.edu.travelbaseballapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "771731259565-q1t0vk2dprak4tn9ifgu26vm3ta3mc1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "android.csulb.edu.travelbaseballapp",
+            "certificate_hash": "b10e8f14bfb7ed80e3b7229cd3d37b7df18600a9"
+          }
+        },
+        {
+          "client_id": "771731259565-q44mnf3dnsb9bucnehlmb4fmbtnei4rb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGUcvnEVmA5TqLzsH5kIiLHOAtCxMIGPs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "771731259565-q44mnf3dnsb9bucnehlmb4fmbtnei4rb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
