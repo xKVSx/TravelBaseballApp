@@ -1,5 +1,6 @@
 package android.csulb.edu.travelbaseballapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -59,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.sign_out_menu:
                 AuthUI.getInstance().signOut(this);
+                return true;
+            case R.id.schedule:
+                Intent scheduleIntent = new Intent(this, ScheduleActivity.class);
+                startActivity(scheduleIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
