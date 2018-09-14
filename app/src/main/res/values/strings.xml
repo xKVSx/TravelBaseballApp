@@ -2,4 +2,21 @@
     <string name="app_name">Travel Baseball App</string>
     <string name="sign_out">Log Out</string>
     <string name="schedule">Schedule</string>
+    <string name="open_datetime_dialog">Open DateTime Dialog</string>
+    <string name="date_time">Add Event</string>
+    
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 </resources>

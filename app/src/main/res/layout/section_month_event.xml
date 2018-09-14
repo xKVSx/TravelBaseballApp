@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="148dp"
+    android:background="@drawable/selector_item"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/event_day"
+        android:textSize="14sp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="4 \nTUE"/>
+
+    <TextView
+        android:id="@+id/event_description"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/event_day"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Birthday party!" />
+
+    <TextView
+        android:id="@+id/event_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/event_description"
+        app:layout_constraintTop_toBottomOf="@+id/event_description"
+        tools:text="Auld Dubliner" />
+
+    <TextView
+        android:id="@+id/section_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/event_name"
+        app:layout_constraintTop_toBottomOf="@+id/event_name"
+        tools:text="21 Pine St., Long Beach, CA 90802" />
+
+    <TextView
+        android:id="@+id/event_startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/section_location"
+        app:layout_constraintTop_toBottomOf="@+id/section_location"
+        tools:text="10pm" />
+
+</android.support.constraint.ConstraintLayout>
