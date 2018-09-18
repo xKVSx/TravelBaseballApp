@@ -19,4 +19,10 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+
+    <string-array name="update">
+        <item>""</item>
+        <item>Update</item>
+        <item>Delete</item>
+    </string-array>
 </resources>
