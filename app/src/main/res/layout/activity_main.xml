@@ -21,30 +21,65 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/main_toolbar"
-                app:layout_scrollFlags="snap"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                app:contentInsetStartWithNavigation="0dp">
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_scrollFlags="snap">
 
                 <ImageView
                     android:id="@+id/travel_ball_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
                     android:scaleType="fitStart"
-                    android:src="@drawable/travelballlogo"
-                    android:contentDescription="@string/app_name"/>
+                    android:src="@drawable/travelballlogo" />
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next Upcoming Event!"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_container" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_container">
+
+            <TextView
+                android:id="@+id/eventSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                tools:text="Event Summary" />
+
+            <TextView
+                android:id="@+id/eventDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="28sp"
+                tools:text="Event Description" />
+
+            <TextView
+                android:id="@+id/eventLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="28sp"
+                tools:text="Event Location" />
+
+            <TextView
+                android:id="@+id/eventStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="28sp"
+                tools:text="8am" />
+
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.design.widget.CoordinatorLayout>

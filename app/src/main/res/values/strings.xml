@@ -4,6 +4,7 @@
     <string name="schedule">Schedule</string>
     <string name="open_datetime_dialog">Open DateTime Dialog</string>
     <string name="date_time">Add Event</string>
+    <string name="no_events">No events scheduled</string>
     
     <string-array name="months">
         <item>January</item>
