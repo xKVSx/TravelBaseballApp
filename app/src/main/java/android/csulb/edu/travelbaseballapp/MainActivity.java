@@ -1,6 +1,7 @@
 package android.csulb.edu.travelbaseballapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.csulb.edu.travelbaseballapp.pojos.BaseballEvent;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_GET_ACCOUNTS = 123;
     public static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
     public static final String GOOGLE_CREDENTIAL_EMAIL = "credential_email";
+    public static final String CURRENT_EVENT = "current_event";
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseUser mUser;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //Initialize FirebaseDatabase
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -89,7 +92,11 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 1; i < baseballEventList.size(); i++) {
                         Date nextDate = baseballEventList.get(i).getStartDate();
 
-                        if (minDate.after(nextDate) && minDate.before(currentDate)) {
+                        if (nextDate.before(minDate) && nextDate.after(currentDate)) {
+                            minDate = nextDate;
+                            minIndex = i;
+                        }
+                        else if(minDate.before(currentDate)){
                             minDate = nextDate;
                             minIndex = i;
                         }
@@ -98,16 +105,19 @@ public class MainActivity extends AppCompatActivity {
                 else
                     summaryView.setText(getString(R.string.no_events));
 
-                 if(minDate.before(currentDate)) {
-                     summaryView.setText(getString(R.string.no_events));
-                 }
-                 else {
-                     //set the minDate to the View
-                     summaryView.setText(baseballEventList.get(minIndex).getSummary());
-                     descriptionView.setText(baseballEventList.get(minIndex).getDescription());
-                     locationView.setText(baseballEventList.get(minIndex).getLocation());
-                     startTimeView.setText(baseballEventList.get(minIndex).getDisplayTimeStart());
-                 }
+                if(minDate != null) {
+                    if (minDate.before(currentDate)) {
+                        summaryView.setText(getString(R.string.no_events));
+                    }
+                    else {
+                        //set the minDate to the View
+                        summaryView.setText(baseballEventList.get(minIndex).getSummary());
+                        descriptionView.setText(baseballEventList.get(minIndex).getDescription());
+                        locationView.setText(baseballEventList.get(minIndex).getLocation());
+                        startTimeView.setText(baseballEventList.get(minIndex).getDisplayTimeStart());
+                        upDateWidgetViews(baseballEventList.get(minIndex));
+                    }
+                }
             }
 
             @Override
@@ -227,5 +237,25 @@ public class MainActivity extends AppCompatActivity {
                 else
                     Toast.makeText(this, "denied", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void upDateWidgetViews(BaseballEvent currentEvent){
+        SharedPreferences mPrefs = getSharedPreferences(getString(R.string.current_event), MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        String currentEventSummary;
+        String currentEventDescription;
+        String currentEventLocation;
+        String currentEventStartTime;
+
+        currentEventSummary = currentEvent.getSummary();
+        currentEventDescription = currentEvent.getDescription();
+        currentEventLocation = currentEvent.getLocation();
+        currentEventStartTime = currentEvent.getDisplayTimeStart();
+
+        prefsEditor.putString(getString(R.string.summary), currentEventSummary);
+        prefsEditor.putString(getString(R.string.description), currentEventDescription);
+        prefsEditor.putString(getString(R.string.location), currentEventLocation);
+        prefsEditor.putString(getString(R.string.start_time), currentEventStartTime);
+        prefsEditor.commit();
     }
 }

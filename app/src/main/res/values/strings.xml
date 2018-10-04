@@ -5,7 +5,13 @@
     <string name="open_datetime_dialog">Open DateTime Dialog</string>
     <string name="date_time">Add Event</string>
     <string name="no_events">No events scheduled</string>
-    
+    <string name="current_event">current event</string>
+    <string name="summary">summary</string>
+    <string name="location">location</string>
+    <string name="description">description</string>
+    <string name="start_time">start time</string>
+    <string name="map_package">com.google.android.apps.maps</string>
+
     <string-array name="months">
         <item>January</item>
         <item>February</item>
@@ -26,4 +32,7 @@
         <item>Update</item>
         <item>Delete</item>
     </string-array>
+
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
