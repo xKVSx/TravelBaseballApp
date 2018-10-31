@@ -1,19 +1,24 @@
 package android.csulb.edu.travelbaseballapp;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.csulb.edu.travelbaseballapp.pojos.BaseballEvent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,18 +52,21 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mUsersDatabaseReference;
     private DatabaseReference mEventsDatabaseReference;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_main);
         mToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getWindow().setExitTransition(new Explode());
 
         //Initialize FirebaseDatabase
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mUsersDatabaseReference = mFirebaseDatabase.getReference().child("users");
-        mEventsDatabaseReference = mFirebaseDatabase.getReference().child("events");
+        mUsersDatabaseReference = mFirebaseDatabase.getReference().child(getString(R.string.users));
+        mEventsDatabaseReference = mFirebaseDatabase.getReference().child(getString(R.string.events));
 
         //initializes FirebaseAuth components
         initializeFirebaseAuth();
@@ -155,7 +163,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.schedule:
                 Intent scheduleIntent = new Intent(this, ScheduleActivity.class);
                 scheduleIntent.putExtra(GOOGLE_CREDENTIAL_EMAIL, mUser.getEmail());
-                startActivity(scheduleIntent);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+                    startActivity(scheduleIntent, bundle);
+                }
+                else
+                    startActivity(scheduleIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
